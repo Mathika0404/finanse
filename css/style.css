@@ -544,11 +544,11 @@ h6,
   color: var(--primary);
 }
 
-.footer .btn.btn-link:hover {
+/* .footer .btn.btn-links:hover {
   color: var(--primary);
   letter-spacing: 1px;
   text-decoration: none;
-}
+} */
 
 .footer h4 {
   font-weight: 600;
