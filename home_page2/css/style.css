@@ -2364,3 +2364,10 @@ figure figcaption {
         opacity: 1;
     }
 }
+
+/* Show black outline when focusing with keyboard */
+a:focus, button:focus, input:focus, .nav-link:focus {
+    outline: 2px solid black !important;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
