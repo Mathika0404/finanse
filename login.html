@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Signup</title>
+  <link rel="stylesheet" href="signin.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <a href="../index.html" class="back-btn">
+    <i class="bx bx-left-arrow-alt"></i>
+  </a>
+
+  <div class="wrapper" id="wrapper">
+
+    <!-- LOGIN FORM -->
+    <form class="form login" id="loginForm" autocomplete="on">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="email" name="email" required>
+        <label>Email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Password</label>
+      </div>
+      <div class="forget">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+        <a href="404.html">Forgot password?</a>
+      </div>
+      <button type="submit">Log In</button>
+      <p class="toggle">
+        Don't have an account?
+        <a href="#" onclick="showRegister(); return false;">Register</a>
+      </p>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form class="form register hidden" id="registerForm" autocomplete="on">
+      <h2>Register</h2>
+      <div class="input-field">
+        <input type="text" name="fullname" required>
+        <label>Full Name</label>
+      </div>
+      <div class="input-field">
+        <input type="email" name="email" required>
+        <label>Email</label>
+      </div>
+      <div class="input-field">
+        <input type="tel" name="phone" required>
+        <label>Phone</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Password</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="confirm_password" required>
+        <label>Confirm Password</label>
+      </div>
+      <div class="forget">
+        <label>
+          <input type="checkbox" name="terms" required> I agree terms
+        </label>
+      </div>
+      <button type="submit">Register</button>
+      <p class="toggle">
+        Already have an account?
+        <a href="#" onclick="showLogin(); return false;">Login</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    function showRegister() {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("registerForm").classList.remove("hidden");
+    }
+    function showLogin() {
+      document.getElementById("loginForm").classList.remove("hidden");
+      document.getElementById("registerForm").classList.add("hidden");
+    }
+
+    // LOGIN
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+      window.location.href = "404.html";
+    });
+
+    // REGISTER
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+      // Extra password check
+      const pass = this.querySelector('input[name="password"]').value;
+      const cpass = this.querySelector('input[name="confirm_password"]').value;
+      if (pass !== cpass) {
+        alert("Password and Confirm Password must match");
+        return;
+      }
+      window.location.href = "404.html";
+    });
+  </script>
+
+</body>
+</html>
