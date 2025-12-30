@@ -1,267 +1,143 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-:root {
-  --accent-color: #3d7ea1;
-  --base-color: white;
-  --text-color: #2E2B41;
-  --input-color: #F3F0FF;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-family: Poppins, Segoe UI, sans-serif;
-  font-size: 12pt;
-  color: var(--text-color);
-  text-align: center;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Poppins', sans-serif;
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;      /* Vertically center */
-  justify-content: center;  /* Horizontally center */
-  background-color: #f2f5f9; /* Light neutral background */
-  overflow: hidden;
+min-height:100vh;
+background-image: url(hero-bg.jpg);
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
-/* LOGIN BOX */
 .wrapper {
-  background-color: var(--base-color);
-  width: min(90%, 400px);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+width:380px;
+background:#fff;
+border-radius:10px;
+padding:30px;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
-h1 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+/* FORMS */
+.form {
+transition:0.4s;
 }
 
-/* FORM STYLES */
-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.hidden {
+display:none;
 }
 
-form > div {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+h2 {
+text-align:center;
+margin-bottom:20px;
+color:#333;
 }
 
-form label {
-  flex-shrink: 0;
-  height: 50px;
-  width: 50px;
-  background-color: var(--accent-color);
-  color: var(--base-color);
-  border-radius: 10px 0 0 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  font-weight: 500;
+/* INPUT */
+.input-field {
+position:relative;
+margin-bottom:15px;
 }
 
-form input {
-  flex-grow: 1;
-  height: 50px;
-  padding: 1em;
-  font: inherit;
-  border-radius: 0 10px 10px 0;
-  border: 2px solid var(--input-color);
-  border-left: none;
-  background-color: var(--input-color);
-  transition: 150ms ease;
+.input-field input {
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:4px;
+outline:none;
 }
 
-form input:hover {
-  border-color: var(--accent-color);
+.input-field label {
+position:absolute;
+top:50%;
+left:10px;
+transform:translateY(-50%);
+color:#888;
+transition:.3s;
+pointer-events:none;
 }
 
-form input:focus {
-  outline: none;
-  border-color: var(--text-color);
+.input-field input:focus ~ label,
+.input-field input:valid ~ label {
+top:-8px;
+font-size:12px;
+color: #3d7ea1;
+background:white;
+padding:0 5px;
 }
 
-div:has(input:focus) > label {
-  background-color: var(--text-color);
+/* LINK */
+.toggle {
+text-align:center;
+margin-top:10px;
 }
 
-form input::placeholder {
-  color: var(--text-color);
+.toggle a {
+color: #3d7ea1;
+cursor:pointer;
+text-decoration:none;
 }
 
 /* BUTTON */
-form button {
-  margin-top: 10px;
-  border: none;
-  border-radius: 1000px;
-  padding: 0.85em 4em;
-  background-color: var(--accent-color);
-  color: var(--base-color);
-  font: inherit;
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: 150ms ease;
+button {
+width:100%;
+padding:10px;
+border:none;
+border-radius:4px;
+background:#3d7ea1;
+color:white;
+cursor:pointer;
 }
 
-form button:hover,
-form button:focus {
-  background-color: var(--text-color);
+button:hover {
+background:#333;
 }
 
-/* LINKS */
-a {
-  text-decoration: none;
-  color: var(--accent-color);
+/* FORGOT */
+.forget {
+display:flex;
+justify-content:space-between;
+font-size:13px;
+margin-bottom:15px;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* ERROR HANDLING */
-form div.incorrect label {
-  background-color: #f06272;
-}
-
-form div.incorrect input {
-  border-color: #f06272;
-}
-
-#error-message {
-  color: #f06272;
-}
-
-/* ===== Forgot Password Modal ===== */
-#forgot-panel {
+/* BACK BUTTON */
+.back-btn {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  z-index: 10;
-}
-
-#forgot-panel.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.forgot-content {
-  background: var(--base-color);
-  border-radius: 20px;
-  padding: 40px 30px;
-  width: min(90%, 400px);
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  transform: translateY(-50px);
-  animation: slideDown 0.6s ease forwards;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-60px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.forgot-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-}
-
-.forgot-content p {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-#forgot-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-#forgot-form input {
+  top: 20px;
+  left: 20px;
+  width: 45px;
   height: 45px;
-  padding: 10px;
-  font: inherit;
-  border: 2px solid var(--input-color);
-  border-radius: 10px;
-  background: var(--input-color);
+  background: #3d7ea1;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: 0.3s;
+  z-index: 1000;
 }
 
-#forgot-form input:focus {
-  border-color: var(--accent-color);
-  outline: none;
+.back-btn:hover {
+  background: #333;
+  transform: scale(1.1);
 }
 
-#forgot-form button {
-  border: none;
-  border-radius: 1000px;
-  padding: 0.7em;
-  font: inherit;
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-  background-color: var(--accent-color);
-  color: var(--base-color);
-  transition: 0.3s;
-}
-
-#forgot-form button:hover {
-  background-color: var(--text-color);
-}
-
-#forgot-form #cancel-forgot {
-  background-color: transparent;
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
-}
-
-#forgot-form #cancel-forgot:hover {
-  background-color: var(--text-color);
-  color: var(--base-color);
-}
-
-#forgot-message {
-  color: var(--accent-color);
-  margin-top: 10px;
-  font-weight: 500;
-  opacity: 0;
-  animation: fadeIn 0.8s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+/* MOBILE FIX */
+@media (max-width: 500px) {
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
   }
 }
 

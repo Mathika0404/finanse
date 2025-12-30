@@ -3,57 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Login | Signup</title>
   <link rel="stylesheet" href="signin.css">
-  <script type="text/javascript" src="validation.js" defer></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="wrapper">
-    <h1>Login</h1>
-    <p id="error-message"></p>
-<form id="form" novalidate>
-  <div>
-    <label for="email-input"><span>@</span></label>
-    <input type="email" name="email" id="email-input" placeholder="Email">
-  </div>
-  <div>
-    <label for="password-input">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-        <path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 
-        23.5-56.5T240-640h40v-80q0-83 
-        58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 
-        0 56.5 23.5T800-560v400q0 33-23.5 
-        56.5T720-80H240Zm240-200q33 0 56.5-23.5T560-360q0-33-
-        23.5-56.5T480-440q-33 0-56.5 
-        23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-
-        80q0-50-35-85t-85-35q-50 0-85 
-        35t-35 85v80Z"/>
-      </svg>
-    </label>
-    <input type="password" name="password" id="password-input" placeholder="Password">
-  </div>
-  <button type="submit">Login</button>
-</form>
+  <a href="../index.html" class="back-btn">
+    <i class="bx bx-left-arrow-alt"></i>
+  </a>
 
+  <div class="wrapper" id="wrapper">
 
-    <p><a href="#" id="forgot-password-link">Forgot Password?</a></p>
-    <p>New here? <a href="signup.html">Create an Account</a></p>
+    <!-- LOGIN FORM -->
+    <form class="form login" id="loginForm" autocomplete="on">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="email" name="email" required>
+        <label>Email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Password</label>
+      </div>
+      <div class="forget">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+        <a href="404.html">Forgot password?</a>
+      </div>
+      <button type="submit">Log In</button>
+      <p class="toggle">
+        Don't have an account?
+        <a href="#" onclick="showRegister(); return false;">Register</a>
+      </p>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form class="form register hidden" id="registerForm" autocomplete="on">
+      <h2>Register</h2>
+      <div class="input-field">
+        <input type="text" name="fullname" required>
+        <label>Full Name</label>
+      </div>
+      <div class="input-field">
+        <input type="email" name="email" required>
+        <label>Email</label>
+      </div>
+      <div class="input-field">
+        <input type="tel" name="phone" required>
+        <label>Phone</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Password</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="confirm_password" required>
+        <label>Confirm Password</label>
+      </div>
+      <div class="forget">
+        <label>
+          <input type="checkbox" name="terms" required> I agree terms
+        </label>
+      </div>
+      <button type="submit">Register</button>
+      <p class="toggle">
+        Already have an account?
+        <a href="#" onclick="showLogin(); return false;">Login</a>
+      </p>
+    </form>
   </div>
 
-  <!-- Forgot Password Modal -->
-  <div id="forgot-panel">
-    <div class="forgot-content">
-      <h2>Reset Password</h2>
-      <p>Enter your email address and we’ll send you a reset link.</p>
-      <form id="forgot-form">
-        <input type="email" id="forgot-email" placeholder="Enter your email">
-<button type="button" onclick="sendResetLink()">Send Reset Link</button>
-        <button type="button" id="cancel-forgot">Cancel</button>
-      </form>
-      <p id="forgot-message"></p>
-    </div>
-  </div>
+  <script>
+    function showRegister() {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("registerForm").classList.remove("hidden");
+    }
+    function showLogin() {
+      document.getElementById("loginForm").classList.remove("hidden");
+      document.getElementById("registerForm").classList.add("hidden");
+    }
 
-  <script src="forgot.js"></script>
+    // LOGIN
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+      window.location.href = "404.html";
+    });
+
+    // REGISTER
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+      // Extra password check
+      const pass = this.querySelector('input[name="password"]').value;
+      const cpass = this.querySelector('input[name="confirm_password"]').value;
+      if (pass !== cpass) {
+        alert("Password and Confirm Password must match");
+        return;
+      }
+      window.location.href = "404.html";
+    });
+  </script>
+
 </body>
 </html>

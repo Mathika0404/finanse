@@ -56,6 +56,205 @@
       border-color: red !important;
       background-color: #ffe6e6;
     }
+
+   /* Zoom in & out animation for About image */
+.circle-bg img {
+  animation: zoomInOut 5s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Keyframes */
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+ 
+/* Heading underline animation */
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+/* Animated underline */
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: #355EFC; /* change color if needed */
+  transform: translateX(-50%);
+  animation: underlineMove 1s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes underlineMove {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  30% {
+    width: 60%;
+    opacity: 1;
+  }
+  70% {
+    width: 60%;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+.col-md-4 {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.col-md-4:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Base icon wave animation */
+.col-md-4 img {
+  animation: iconWave 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Stagger the wave (left → right) */
+.col-md-4:nth-child(1) img {
+  animation-delay: 0s;
+}
+
+.col-md-4:nth-child(2) img {
+  animation-delay: 0.3s;
+}
+
+.col-md-4:nth-child(3) img {
+  animation-delay: 0.6s;
+}
+
+/* Wave keyframes */
+@keyframes iconWave {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-12px) rotate(-4deg);
+  }
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  60% {
+    transform: translateY(12px) rotate(4deg);
+  }
+  80% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Gallery item container */
+#posts .item-wrap {
+  position: relative;
+  display: block;
+  overflow: hidden; /* prevents image overflow */
+}
+
+/* Image zoom-out animation */
+#posts img {
+  width: 100%;
+  display: block;
+  transform: scale(1.15);          /* start zoomed */
+  animation: zoomOutGallery 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Keyframes */
+@keyframes zoomOutGallery {
+  0% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+/* Service card zoom animation */
+#services-section .unit-4 {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: serviceZoomInOut 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Stagger animation for wave effect */
+#services-section .col-lg-4:nth-child(1) .unit-4 { animation-delay: 0s; }
+#services-section .col-lg-4:nth-child(2) .unit-4 { animation-delay: .3s; }
+#services-section .col-lg-4:nth-child(3) .unit-4 { animation-delay: .6s; }
+#services-section .col-lg-4:nth-child(4) .unit-4 { animation-delay: .9s; }
+#services-section .col-lg-4:nth-child(5) .unit-4 { animation-delay: 1.2s; }
+#services-section .col-lg-4:nth-child(6) .unit-4 { animation-delay: 1.5s; }
+
+/* Keyframes */
+@keyframes serviceZoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Blog entry container */
+.h-entry {
+  overflow: hidden; /* prevents image overflow */
+}
+
+/* Blog image zoom-out animation */
+.h-entry img {
+  width: 100%;
+  display: block;
+  transform: scale(1.15);           /* start zoomed in */
+  animation: blogZoomOut 6s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Stagger animation for better effect */
+.col-lg-4:nth-child(1) .h-entry img { animation-delay: 0s; }
+.col-lg-4:nth-child(2) .h-entry img { animation-delay: .4s; }
+.col-lg-4:nth-child(3) .h-entry img { animation-delay: .8s; }
+
+/* Keyframes */
+@keyframes blogZoomOut {
+  0% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
   </style>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
